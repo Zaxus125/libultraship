@@ -251,7 +251,7 @@ static struct ShaderProgram* gfx_opengl_create_and_load_new_shader(uint64_t shad
 #ifdef __APPLE__
     const char* glsl_vertshader_version = "#version 410 core";
 #elif defined(USE_OPENGLES)
-    const char* glsl_vertshader_version = "#version 410 core";
+    const char* glsl_vertshader_version = "#version 300 es";
 #endif
 
 #if defined(__APPLE__) || defined(USE_OPENGLES)
