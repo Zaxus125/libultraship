@@ -173,6 +173,15 @@ static void PrintRegisters(ucontext_t* ctx, char* buffer, size_t* pos) {
     append_line(buffer, pos, regbuffer);
     snprintf(regbuffer, std::size(regbuffer), "CPSR: 0x%08lX", ctx->uc_mcontext.arm_cpsr);
     append_line(buffer, pos, regbuffer);
+#elif defined(__aarch64__)
+    for (int i = 0; i < 31; i++) {
+        snprintf(regbuffer, std::size(regbuffer), "X%d: 0x%016llX", i, ctx->uc_mcontext.regs[i]);
+        append_line(buffer, pos, regbuffer);
+    }
+    snprintf(regbuffer, std::size(regbuffer), "SP: 0x%016llX", ctx->uc_mcontext.sp);
+    append_line(buffer, pos, regbuffer);
+    snprintf(regbuffer, std::size(regbuffer), "PC: 0x%016llX", ctx->uc_mcontext.pc);
+    append_line(buffer, pos, regbuffer);
 #else
     snprintf(regbuffer, std::size(regbuffer), "EDI: 0x%08lX", ctx->uc_mcontext.gregs[REG_EDI]);
     append_line(buffer, pos, regbuffer);
