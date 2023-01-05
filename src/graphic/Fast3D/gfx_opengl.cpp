@@ -352,6 +352,7 @@ static struct ShaderProgram* gfx_opengl_create_and_load_new_shader(uint64_t shad
 
 #ifdef USE_OPENGLES
     append_line(fs_buf, &fs_len, glsl_fragshader_version);
+    append_line(fs_buf, &fs_len, "precision highp float;");
 #endif
 
     for (int i = 0; i < 2; i++) {
